@@ -22,30 +22,39 @@ func main(){
 	x:=42
 	y:=910
 	z:=783
+
+	  /////////////
+	 // Line 50 //
+	/////////////
+	mainIf(w, x, y, z)
+
+	  //////////////
+	 // Line 100 //
+	//////////////
+	mainSwitch(x, y, z)
+
+	   /////////////////////
+	  // Move to main2() //
+	 //     line 160		//
+	/////////////////////
+	mainSelects()
+
+		 /////////////////////////
+	  // Move to mainLoops() //
+	 //       line 205  		//
+	/////////////////////////
+	mainLoops()
+}
+
+
+func mainIf(w, x, y, z int){	
 	fmt.Println("\nTesting if statements:")
 	ifStatements(w, x)
 	ifStatements(x, y)
 	ifStatements(y, z)
 	fmt.Println("\nTesting if statement with 'idiom' function:")
 	ifIdiom(x)
-	fmt.Println("\nSwitch statements with comparrison operators:")
-	switchA(x)
-	switchA(y)
-	switchA(z)
-	fmt.Println("\nDirect case switches:")
-	switchB(x)
-	switchB(y)
-	fmt.Println("\nSwitches with fallthrough:")
-	switchF(x)
-	switchF(y)
-
-	   /////////////////////
-	  // Move to main2() //
-	 //    ~line 140		//
-	/////////////////////
-	main2()
 }
-
 
   ///////////////////
  // If Statements //
@@ -86,6 +95,20 @@ func ifIdiom(a int){
 // 	}
 // }
 
+
+
+func mainSwitch(x, y, z int){
+	fmt.Println("\nSwitch statements with comparrison operators:")
+	switchA(x)
+	switchA(y)
+	switchA(z)
+	fmt.Println("\nDirect case switches:")
+	switchB(x)
+	switchB(y)
+	fmt.Println("\nSwitches with fallthrough:")
+	switchF(x)
+	switchF(y)
+}
 
   ///////////////////////////
  // Switch - conditionals //
@@ -134,11 +157,7 @@ func switchF(x int){
 	}
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-func main2(){
+func mainSelects(){
 	fmt.Println("\n'Select' Statements and basic concurrency:")
 	selects()
 }
@@ -180,5 +199,43 @@ func selects(){
 		fmt.Println("Value from CH.1:", v1)
 	case v2 := <-ch2:
 		fmt.Println("Value from CH.2:", v2)
+	}
+}
+
+func mainLoops(){
+	// For loop
+	sum := 0
+	fmt.Println("\nFor loop:")
+		
+	for i:=0; i<10; i++{		//  <<------- For Loop just like Java
+		fmt.Printf("%d -> ", sum)
+		sum += 1
+	}
+	fmt.Printf("%d... End loop.", sum)
+
+	// While Loop
+	y := 0
+	fmt.Println("\nWhile Loop:")
+	for y>10 {							//	<<------- Like a While loop in Java
+		fmt.Printf("y=%v", y)
+		y++
+	}
+
+
+	// For loops in range
+	fmt.Println("\nRange loop over Array:")
+	lst := []int{42, 43, 44, 45, 46, 47}
+	for i, v := range lst{
+		fmt.Println("Range over slice", i, "->", v)
+	}
+
+
+	fmt.Println("\nRange loop over Map:")
+	m := map[string]int{
+		"Neil":	33,
+		"Skippy the Wondermouse":	12,
+	}
+	for k, v := range m{
+		fmt.Println(k, "is", v, "years old.")
 	}
 }
